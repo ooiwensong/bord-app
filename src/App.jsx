@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
+import NavBar from "./components/NavBar";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
-
   return (
-    <>
-      <h1 className="text-6xl text-sky-400">Hello World</h1>
-    </>
+    <div>
+      <NavBar />
+      <SearchResults />
+    </div>
   );
 }
 
