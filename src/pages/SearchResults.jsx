@@ -19,7 +19,7 @@ const SearchResults = (props) => {
   }
 
   useEffect(() => {
-    getResults("gaia");
+    getResults("red");
   }, []);
 
   // console.log(results);

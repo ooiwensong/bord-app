@@ -16,7 +16,11 @@ const SearchItem = ({ item }) => {
       attributesKey: "attr",
       ignoreDeclaration: true,
     });
-    setItemImg(JSONData.items.item.image._text);
+    setItemImg(
+      !JSONData.items.item.image._text
+        ? "https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__itemrep/img/Py7CTY0tSBSwKQ0sgVjRFfsVUZU=/fit-in/246x300/filters:strip_icc()/pic1657689.jpg"
+        : JSONData.items.item.image._text,
+    );
     setItemYear(JSONData.items.item.yearpublished.attr.value);
     setItemName(
       Array.isArray(JSONData.items.item.name)
