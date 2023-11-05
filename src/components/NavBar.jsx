@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
+  const handleClick = () => {
+    if (!props.searchInput) return;
+    props.setSearchInput(props.searchInput);
+  };
+
   return (
     <header className="sticky top-0 w-full bg-slate-200 leading-6">
       <nav className="mx-auto flex h-full max-w-full justify-between gap-5 px-10">
@@ -13,9 +18,14 @@ const NavBar = (props) => {
             placeholder="Search"
             className="w-full rounded-lg bg-slate-300 px-7 py-2"
             onChange={(e) => props.setSearchInput(e.target.value)}
+            required
           />
-          <Link to="/search">
-            <button type="button" className="absolute left-0">
+          <Link to={`/search/${props.searchInput}`}>
+            <button
+              type="button"
+              className="absolute left-0"
+              onClick={handleClick}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -32,6 +42,9 @@ const NavBar = (props) => {
               </svg>
             </button>
           </Link>
+        </div>
+        <div>
+          <Link to="/">My Collection</Link>
         </div>
       </nav>
     </header>

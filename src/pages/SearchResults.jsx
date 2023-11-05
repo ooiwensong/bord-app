@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import convert from "xml-js";
 import SearchItem from "../components/SearchItem";
+import { useParams } from "react-router-dom";
 
 const SearchResults = (props) => {
   const [results, setResults] = useState([]);
+  const params = useParams();
 
   async function getResults(searchInput) {
     const res = await fetch(
@@ -15,12 +17,17 @@ const SearchResults = (props) => {
       attributesKey: "attr",
       ignoreDeclaration: true,
     });
-    setResults(JSONData.items.item);
+    setResults(
+      Array.isArray(JSONData.items.item)
+        ? JSONData.items.item
+        : [JSONData.items.item],
+    );
   }
 
   useEffect(() => {
     getResults(props.searchInput);
-  }, []);
+    props.setSearchInput("");
+  }, [params.searchParams]);
 
   return (
     <div className="container mx-auto">

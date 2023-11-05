@@ -7,14 +7,20 @@ import ItemInfo from "./pages/ItemInfo";
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
+  const [collection, setCollection] = useState([]);
   return (
     <div>
       <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
       <Routes>
         <Route path="/" element={<MyCollections />} />
         <Route
-          path="/search"
-          element={<SearchResults searchInput={searchInput} />}
+          path="/search/:searchParams"
+          element={
+            <SearchResults
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+            />
+          }
         />
         <Route path="/boardgame/:id" element={<ItemInfo />} />
       </Routes>
