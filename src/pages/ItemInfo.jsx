@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import convert from "xml-js";
 import Button from "../components/Button";
 
-const ItemInfo = ({ item }) => {
+const ItemInfo = (props) => {
   const params = useParams();
   const [itemImg, setItemImg] = useState("");
   const [itemYear, setItemYear] = useState("");
@@ -72,6 +72,21 @@ const ItemInfo = ({ item }) => {
   useEffect(() => {
     getItem();
   }, []);
+
+  function handleAddCollection() {
+    let collectionId = [];
+    // create an array of game IDs that are inside the collection
+    if (props.collection.length > 0) {
+      collectionId = props.collection.map((i) => i.itemId);
+    }
+    // checks if current game is already in collection
+    if (!collectionId.includes(params.id)) {
+      props.setCollection([
+        ...props.collection,
+        { itemId: params.id, itemImg, itemName, itemYear },
+      ]);
+    } else return;
+  }
 
   return (
     <div className="container mx-auto mt-5 px-3 2xl:px-60">

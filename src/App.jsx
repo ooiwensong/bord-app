@@ -22,10 +22,14 @@ function App() {
             />
           }
         />
-        <Route path="/boardgame/:id" element={<ItemInfo />} />
+        <Route
+          path="/boardgame/:id"
+          element={
+            <ItemInfo collection={collection} setCollection={setCollection} />
+          }
+        />
       </Routes>
     </div>
   );
 }
-
 export default App;
