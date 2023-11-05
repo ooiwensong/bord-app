@@ -19,10 +19,8 @@ const SearchResults = (props) => {
   }
 
   useEffect(() => {
-    getResults("red");
+    getResults(props.searchInput);
   }, []);
-
-  // console.log(results);
 
   return (
     <div className="container mx-auto">

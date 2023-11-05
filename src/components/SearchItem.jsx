@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import convert from "xml-js";
 
 const SearchItem = ({ item }) => {
@@ -17,11 +18,15 @@ const SearchItem = ({ item }) => {
       ignoreDeclaration: true,
     });
     setItemImg(
-      !JSONData.items.item.image._text
-        ? "https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__itemrep/img/Py7CTY0tSBSwKQ0sgVjRFfsVUZU=/fit-in/246x300/filters:strip_icc()/pic1657689.jpg"
-        : JSONData.items.item.image._text,
+      JSONData.items.item.image
+        ? JSONData.items.item.image._text
+        : "https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__itemrep/img/Py7CTY0tSBSwKQ0sgVjRFfsVUZU=/fit-in/246x300/filters:strip_icc()/pic1657689.jpg",
     );
-    setItemYear(JSONData.items.item.yearpublished.attr.value);
+    setItemYear(
+      JSONData.items.item.yearpublished.attr.value !== "0"
+        ? JSONData.items.item.yearpublished.attr.value
+        : "N/A",
+    );
     setItemName(
       Array.isArray(JSONData.items.item.name)
         ? JSONData.items.item.name[0].attr.value
@@ -34,11 +39,11 @@ const SearchItem = ({ item }) => {
   }, []);
 
   return (
-    <div className="flex h-52 max-w-full mt-6">
+    <div className="mt-6 flex h-52 max-w-full">
       <img src={itemImg} alt="" className="bg-contain" />
-      <h2>
-        {itemName} ({itemYear})
-      </h2>
+      <div>
+        <Link to={`/boardgame/${item.attr.id}`}>{itemName}</Link>({itemYear})
+      </div>
     </div>
   );
 };
