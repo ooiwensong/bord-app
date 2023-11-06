@@ -2,6 +2,11 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
+  function handleClick() {
+    localStorage.setItem("input", props.searchInput);
+    props.setSearchInput("");
+  }
+
   return (
     <header className="sticky top-0 w-full bg-slate-200 leading-6">
       <nav className="mx-auto flex h-full max-w-full justify-between gap-5 px-10">
@@ -17,9 +22,9 @@ const NavBar = (props) => {
           />
           <Link to={`/search/${props.searchInput}`}>
             <button
-              type="submit"
+              type="button"
               className="absolute left-0"
-              // onClick={handleClick}
+              onClick={handleClick}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

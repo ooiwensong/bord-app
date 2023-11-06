@@ -3,7 +3,7 @@ import convert from "xml-js";
 import SearchItem from "../components/SearchItem";
 import { useParams } from "react-router-dom";
 
-const SearchResults = (props) => {
+const SearchResults = () => {
   const [results, setResults] = useState([]);
   const params = useParams();
 
@@ -25,7 +25,7 @@ const SearchResults = (props) => {
   }
 
   useEffect(() => {
-    getResults(props.searchInput);
+    getResults(localStorage.getItem("input"));
   }, [params.searchParams]);
 
   return (
