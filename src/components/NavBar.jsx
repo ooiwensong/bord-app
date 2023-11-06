@@ -24,7 +24,7 @@ const NavBar = (props) => {
             <button
               type="button"
               className="absolute left-0"
-              onClick={handleClick}
+              // onClick={handleClick}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
