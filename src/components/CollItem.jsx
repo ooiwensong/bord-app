@@ -22,8 +22,21 @@ const CollItem = (props) => {
           {props.item.itemName} ({props.item.itemYear})
         </div>
       </Link>
-      <div>
-        <Button className="mt-10" onClick={handleDelete}>
+      <div className="mt-auto">
+        <Button
+          className=" relative rounded-md bg-gray-400 py-1 pl-7 pr-3 hover:bg-gray-300"
+          onClick={handleDelete}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="absolute left-0.5 h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M18 12H6" />
+          </svg>
           Remove from Collection
         </Button>
       </div>
