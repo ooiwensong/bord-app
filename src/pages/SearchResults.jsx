@@ -26,7 +26,7 @@ const SearchResults = (props) => {
 
   useEffect(() => {
     getResults(props.searchInput);
-    props.setSearchInput("");
+    // props.setSearchInput("");
   }, [params.searchParams]);
 
   return (

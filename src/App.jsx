@@ -12,7 +12,15 @@ function App() {
     <div>
       <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
       <Routes>
-        <Route path="/" element={<MyCollections />} />
+        <Route
+          path="/"
+          element={
+            <MyCollections
+              collection={collection}
+              setCollection={setCollection}
+            />
+          }
+        />
         <Route
           path="/search/:searchParams"
           element={

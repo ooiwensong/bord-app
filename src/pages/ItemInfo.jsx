@@ -74,6 +74,7 @@ const ItemInfo = (props) => {
   }, []);
 
   function handleAddCollection() {
+    console.log("button clicked");
     let collectionId = [];
     // create an array of game IDs that are inside the collection
     if (props.collection.length > 0) {
@@ -85,7 +86,11 @@ const ItemInfo = (props) => {
         ...props.collection,
         { itemId: params.id, itemImg, itemName, itemYear },
       ]);
-    } else return;
+      console.log(props.collection);
+    } else {
+      console.log("game already in collection");
+      return;
+    }
   }
 
   return (
@@ -103,7 +108,10 @@ const ItemInfo = (props) => {
           <h3>Published By: {itemPublisher}</h3>
           <h3>Rating: {Math.round(itemRating * 10) / 10}</h3>
           <div className="mt-auto">
-            <Button className=" relative rounded-md bg-green-500 py-1 pl-7 pr-3 hover:bg-green-400">
+            <Button
+              className=" relative rounded-md bg-green-500 py-1 pl-7 pr-3 hover:bg-green-400"
+              onClick={handleAddCollection}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
