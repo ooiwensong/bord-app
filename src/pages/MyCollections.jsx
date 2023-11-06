@@ -21,7 +21,9 @@ const MyCollections = (props) => {
       </div>
       {props.collection.length === 0 && (
         <div>
-          <h2>No Games in collection</h2>
+          <h2 className=" mt-5 text-center text-4xl text-slate-300">
+            Looks like your collection is empty. Search for a game to begin!
+          </h2>
         </div>
       )}
     </div>

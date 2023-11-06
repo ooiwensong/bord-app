@@ -7,9 +7,9 @@ const SearchResults = (props) => {
   const [results, setResults] = useState([]);
   const params = useParams();
 
-  async function getResults(searchInput) {
+  async function getResults(query) {
     const res = await fetch(
-      `https://boardgamegeek.com/xmlapi2/search?query=${searchInput}&type=boardgame`,
+      `https://boardgamegeek.com/xmlapi2/search?query=${query}&type=boardgame`,
     );
     const XMLData = await res.text();
     const JSONData = convert.xml2js(XMLData, {
@@ -26,7 +26,6 @@ const SearchResults = (props) => {
 
   useEffect(() => {
     getResults(props.searchInput);
-    // props.setSearchInput("");
   }, [params.searchParams]);
 
   return (

@@ -17,6 +17,7 @@ const ItemInfo = (props) => {
   const [itemMaxTime, setItemMaxTime] = useState("");
   const [itemRating, setItemRating] = useState("");
   const [itemWeight, setItemWeight] = useState("");
+  const [isGameAdded, setIsGameAdded] = useState();
 
   async function getItem() {
     const res = await fetch(
@@ -71,26 +72,31 @@ const ItemInfo = (props) => {
 
   useEffect(() => {
     getItem();
-  }, []);
-
-  function handleAddCollection() {
-    console.log("button clicked");
     let collectionId = [];
-    // create an array of game IDs that are inside the collection
     if (props.collection.length > 0) {
       collectionId = props.collection.map((i) => i.itemId);
     }
-    // checks if current game is already in collection
-    if (!collectionId.includes(params.id)) {
-      props.setCollection([
-        ...props.collection,
-        { itemId: params.id, itemImg, itemName, itemYear },
-      ]);
-      console.log(props.collection);
-    } else {
-      console.log("game already in collection");
-      return;
-    }
+    collectionId.includes(params.id)
+      ? setIsGameAdded(true)
+      : setIsGameAdded(false);
+  }, []);
+
+  function handleAddCollection() {
+    props.setCollection([
+      ...props.collection,
+      { itemId: params.id, itemImg, itemName, itemYear },
+    ]);
+    setIsGameAdded(true);
+  }
+
+  function handleRemoveCollection() {
+    let idx = props.collection.findIndex((i) => i.itemId === params.id);
+    props.setCollection((prevCollection) => {
+      const tempArr = [...prevCollection];
+      tempArr.splice(idx, 1);
+      return tempArr;
+    });
+    setIsGameAdded(false);
   }
 
   return (
@@ -107,28 +113,54 @@ const ItemInfo = (props) => {
           <h3>Designed By: {itemDesigner}</h3>
           <h3>Published By: {itemPublisher}</h3>
           <h3>Rating: {Math.round(itemRating * 10) / 10}</h3>
-          <div className="mt-auto">
-            <Button
-              className=" relative rounded-md bg-green-500 py-1 pl-7 pr-3 hover:bg-green-400"
-              onClick={handleAddCollection}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="absolute left-0.5 h-6 w-6"
+          {!isGameAdded && (
+            <div className="mt-auto">
+              <Button
+                className=" relative rounded-md bg-green-500 py-1 pl-7 pr-3 hover:bg-green-400"
+                onClick={handleAddCollection}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v12m6-6H6"
-                />
-              </svg>
-              Add To Collection
-            </Button>
-          </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="absolute left-0.5 h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v12m6-6H6"
+                  />
+                </svg>
+                Add To Collection
+              </Button>
+            </div>
+          )}
+          {isGameAdded && (
+            <div className="mt-auto">
+              <Button
+                className=" relative rounded-md bg-gray-400 py-1 pl-7 pr-3 hover:bg-gray-300"
+                onClick={handleRemoveCollection}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="absolute left-0.5 h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M18 12H6"
+                  />
+                </svg>
+                Remove from Collection
+              </Button>
+            </div>
+          )}
         </div>
       </section>
       <section
