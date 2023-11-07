@@ -12,17 +12,17 @@ const CollItem = (props) => {
   };
 
   return (
-    <div className="flex flex-col rounded-lg border p-2 shadow-md hover:bg-slate-50">
+    <div className="flex flex-col rounded-lg border p-2 shadow-md transition-transform ease-in-out hover:scale-105 hover:bg-slate-50">
       <div
         className="h-80 bg-contain bg-center bg-no-repeat"
         style={{ backgroundImage: `url("${props.item.itemImg}")` }}
       ></div>
       <Link to={`/boardgame/${props.item.itemId}`}>
-        <div className="mt-2">
+        <div className="mt-2 text-lg">
           {props.item.itemName} ({props.item.itemYear})
         </div>
       </Link>
-      <div className="mt-auto">
+      <div className="mt-10">
         <Button
           className=" relative rounded-md bg-gray-400 py-1 pl-7 pr-3 hover:bg-gray-300"
           onClick={handleDelete}
