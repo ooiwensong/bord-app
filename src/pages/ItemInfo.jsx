@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import convert from "xml-js";
+import { decode } from "html-entities";
 import Button from "../components/Button";
 
 const ItemInfo = (props) => {
@@ -176,7 +177,7 @@ const ItemInfo = (props) => {
         <h3>Weight: {Math.round(itemWeight * 100) / 100}/5</h3>
       </section>
       <section id="description" className="mt-16 border-t-2 px-2 pt-5">
-        {itemDescription}
+        <p>{decode(`${itemDescription}`, { level: "html5" })}</p>
       </section>
     </div>
   );
