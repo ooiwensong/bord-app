@@ -8,22 +8,23 @@ const NavBar = (props) => {
   }
 
   return (
-    <header className="sticky top-0 w-full bg-slate-200 leading-6">
-      <nav className="mx-auto flex h-full max-w-full justify-between gap-5 px-10">
-        <div className="relative">
+    <header className="sticky top-0 w-full bg-slate-200">
+      <nav className="mx-auto grid grid-cols-4 gap-5">
+        <div className="col-span-1"></div>
+        <div className="relative col-span-2 my-4">
           <input
             type="text"
             name="q"
             value={props.searchInput}
             placeholder="Search"
-            className="w-full rounded-lg bg-slate-300 px-7 py-2"
+            className="w-full rounded-full bg-slate-300 px-7 py-2"
             onChange={(e) => props.setSearchInput(e.target.value)}
             required
           />
           <Link to={`/search/${props.searchInput}`}>
             <button
               type="button"
-              className="absolute left-0"
+              className="absolute left-1 top-2.5"
               onClick={handleClick}
             >
               <svg
@@ -43,8 +44,12 @@ const NavBar = (props) => {
             </button>
           </Link>
         </div>
-        <div>
-          <Link to="/">My Collection</Link>
+        <div className="col-span-1 flex align-middle text-lg">
+          <Link to="/" className="my-auto ml-3">
+            <p className="leading-[3rem] underline-offset-8 hover:underline">
+              My Collection
+            </p>
+          </Link>
         </div>
       </nav>
     </header>

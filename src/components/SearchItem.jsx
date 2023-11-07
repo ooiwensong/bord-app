@@ -39,12 +39,20 @@ const SearchItem = ({ item }) => {
   }, []);
 
   return (
-    <div className="mt-6 flex h-52 max-w-full">
-      <img src={itemImg} alt="" className="bg-contain" />
-      <div>
-        <Link to={`/boardgame/${item.attr.id}`}>{itemName}</Link>({itemYear})
+    <Link to={`/boardgame/${item.attr.id}`}>
+      <div className="mt-6 flex h-52 max-w-full rounded-lg border py-5 shadow-md hover:bg-slate-50">
+        <div
+          className="w-72 bg-contain bg-center bg-no-repeat"
+          style={{ backgroundImage: `url("${itemImg}")` }}
+        ></div>
+        {/* <img src={itemImg} alt="" className="bg-contain" /> */}
+        <div>
+          <p className="text-xl font-medium">
+            {itemName} <span className="text-lg font-normal">({itemYear})</span>
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
