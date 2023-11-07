@@ -102,11 +102,16 @@ const ItemInfo = (props) => {
 
   return (
     <div className="container mx-auto mt-5 px-3 2xl:px-60">
-      <section id="hero" className="flex">
-        <div id="img-container" className="w-40">
-          <img src={itemImg} alt="" className="bg-cover" />
-        </div>
-        <div id="main-item-data" className="ml-10 flex flex-col gap-1">
+      <section id="hero" className="grid grid-cols-2 grid-rows-[250px]">
+        <div
+          id="img-container"
+          className="col-span-1 bg-contain bg-right bg-no-repeat"
+          style={{ backgroundImage: `url("${itemImg}")` }}
+        ></div>
+        <div
+          id="main-item-data"
+          className="col-span-1 ml-10 flex flex-col gap-1"
+        >
           <h2 className="text-2xl font-bold">
             {itemName}
             <span className="text-lg font-normal"> ({itemYear})</span>
@@ -166,7 +171,7 @@ const ItemInfo = (props) => {
       </section>
       <section
         id="stats"
-        className="my-5 grid grid-cols-3 divide-x-2 text-center leading-10"
+        className="my-10 grid grid-cols-3 divide-x-2 text-center leading-10"
       >
         <h3>
           {itemMinPlayer}-{itemMaxPlayer} Players
