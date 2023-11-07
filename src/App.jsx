@@ -21,15 +21,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/search/:searchParams"
-          element={
-            <SearchResults
-              searchInput={searchInput}
-              setSearchInput={setSearchInput}
-            />
-          }
-        />
+        <Route path="/search/:searchParams" element={<SearchResults />} />
         <Route
           path="/boardgame/:id"
           element={
