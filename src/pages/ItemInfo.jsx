@@ -80,7 +80,6 @@ const ItemInfo = (props) => {
     collectionId.includes(params.id)
       ? setIsGameAdded(true)
       : setIsGameAdded(false);
-    return () => {};
   }, []);
 
   function handleAddCollection() {
