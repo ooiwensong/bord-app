@@ -21,7 +21,7 @@ const NavBar = (props) => {
             onChange={(e) => props.setSearchInput(e.target.value)}
             required
           />
-          <Link to={`/search/${props.searchInput}`}>
+          <Link to={props.searchInput ? `/search/${props.searchInput}` : "#"}>
             <button
               type="button"
               className="absolute left-1 top-2.5"
