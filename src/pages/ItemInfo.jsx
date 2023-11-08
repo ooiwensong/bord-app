@@ -80,6 +80,7 @@ const ItemInfo = (props) => {
     collectionId.includes(params.id)
       ? setIsGameAdded(true)
       : setIsGameAdded(false);
+    return () => {};
   }, []);
 
   function handleAddCollection() {
@@ -98,6 +99,12 @@ const ItemInfo = (props) => {
       return tempArr;
     });
     setIsGameAdded(false);
+  }
+
+  function decodeDes() {
+    const replacedDescription = itemDescription.replaceAll("&#10;", "<br/>");
+    decode(`${replacedDescription}`);
+    return replacedDescription;
   }
 
   return (
@@ -182,7 +189,13 @@ const ItemInfo = (props) => {
         <h3>Weight: {Math.round(itemWeight * 100) / 100}/5</h3>
       </section>
       <section id="description" className="mt-16 border-t-2 px-2 pt-5">
-        <p>{decode(`${itemDescription}`, { level: "html5" })}</p>
+        <p
+          ref={(node) => {
+            if (node) {
+              node.innerHTML = decodeDes();
+            }
+          }}
+        ></p>
       </section>
     </div>
   );
