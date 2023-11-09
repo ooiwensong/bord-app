@@ -18,6 +18,8 @@ Boardgame details page
 
 ## Getting Started
 
+You can try out the app [here](https://amazing-lolly-45d325.netlify.app/).
+
 ## Next Steps
 
 - Allow users to organise and schedule boardgame sessions
