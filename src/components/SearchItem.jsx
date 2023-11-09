@@ -18,8 +18,8 @@ const SearchItem = ({ item }) => {
       ignoreDeclaration: true,
     });
     setItemImg(
-      JSONData.items.item.image
-        ? JSONData.items.item.image._text
+      JSONData.items.item.thumbnail
+        ? JSONData.items.item.thumbnail._text
         : "https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__itemrep/img/Py7CTY0tSBSwKQ0sgVjRFfsVUZU=/fit-in/246x300/filters:strip_icc()/pic1657689.jpg",
     );
     setItemYear(
@@ -47,7 +47,7 @@ const SearchItem = ({ item }) => {
         ></div>
         {/* <img src={itemImg} alt="" className="bg-contain" /> */}
         <div>
-          <p className="text-xl font-medium">
+          <p className="ml-5 text-xl font-medium">
             {itemName} <span className="text-lg font-normal">({itemYear})</span>
           </p>
         </div>
