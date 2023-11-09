@@ -2,7 +2,6 @@ import React, { Suspense, useState, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import MyCollections from "./pages/MyCollections";
-// import SearchResults from "./pages/SearchResults";
 import ItemInfo from "./pages/ItemInfo";
 import LoadingSpinner from "./components/LoadingSpinner";
 
