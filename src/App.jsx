@@ -1,10 +1,12 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import MyCollections from "./pages/MyCollections";
-import SearchResults from "./pages/SearchResults";
+// import SearchResults from "./pages/SearchResults";
 import ItemInfo from "./pages/ItemInfo";
 import LoadingSpinner from "./components/LoadingSpinner";
+
+const SearchResults = lazy(() => import("./pages/SearchResults.jsx"));
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
@@ -12,26 +14,32 @@ function App() {
   return (
     <div>
       <NavBar searchInput={searchInput} setSearchInput={setSearchInput} />
-      <Suspense fallback={<LoadingSpinner />}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MyCollections
-                collection={collection}
-                setCollection={setCollection}
-              />
-            }
-          />
-          <Route path="/search/:searchParams" element={<SearchResults />} />
-          <Route
-            path="/boardgame/:id"
-            element={
-              <ItemInfo collection={collection} setCollection={setCollection} />
-            }
-          />
-        </Routes>
-      </Suspense>
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <MyCollections
+              collection={collection}
+              setCollection={setCollection}
+            />
+          }
+        />
+        <Route
+          path="/search/:searchParams"
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <SearchResults />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/boardgame/:id"
+          element={
+            <ItemInfo collection={collection} setCollection={setCollection} />
+          }
+        />
+      </Routes>
     </div>
   );
 }
