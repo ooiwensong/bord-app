@@ -45,7 +45,6 @@ const SearchItem = ({ item }) => {
           className="w-72 bg-contain bg-center bg-no-repeat"
           style={{ backgroundImage: `url("${itemImg}")` }}
         ></div>
-        {/* <img src={itemImg} alt="" className="bg-contain" /> */}
         <div>
           <p className="ml-5 text-xl font-medium">
             {itemName} <span className="text-lg font-normal">({itemYear})</span>

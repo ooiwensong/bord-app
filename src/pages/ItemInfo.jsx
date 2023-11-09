@@ -83,10 +83,12 @@ const ItemInfo = (props) => {
   }, []);
 
   function handleAddCollection() {
-    props.setCollection([
-      ...props.collection,
-      { itemId: params.id, itemImg, itemName, itemYear },
-    ]);
+    props.setCollection((prevCollection) => {
+      return [
+        ...prevCollection,
+        { itemId: params.id, itemImg, itemName, itemYear },
+      ];
+    });
     setIsGameAdded(true);
   }
 

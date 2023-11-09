@@ -16,6 +16,7 @@ const MyCollections = (props) => {
               item={i}
               idx={idx}
               setCollection={props.setCollection}
+              collection={props.collection}
             />
           ))}
       </div>
