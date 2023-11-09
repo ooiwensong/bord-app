@@ -8,7 +8,7 @@ const NavBar = (props) => {
   }
 
   return (
-    <header className="sticky top-0 w-full bg-slate-200">
+    <header className="sticky top-0 z-10 w-full bg-slate-200">
       <nav className="mx-auto grid grid-cols-4 gap-5">
         <div className="col-span-1"></div>
         <div className="relative col-span-2 my-4">
